@@ -16,3 +16,24 @@ class Library:
             if not any(book in books for books in self.lendedbooks.values()):
                 print(book)
 
+ #Task 1.4
+    def Add_book(self):
+        book_name=input("Enter New Book Name: ")
+        if book_name in self.booksList :
+            print("the Book already exist")
+        else:
+            self.booksList.append(book_name)
+    def return_book(self):
+        user_name=input("Enter Ur Name: ")
+        book_name=input("Enter Book U want to Return: ")
+        for user, book in self.lendedbooks.items():
+            if user == user_name: 
+                if book_name in book:
+                    book.remove(book_name)
+                    print("book has been returned")
+                    print(f"User:{user},Books_lended:{book}")
+                    if not  book: 
+                        del self.lendedbooks[user_name]
+                        return
+            else:
+                print(f"Book '{book_name}' not found under the user '{user_name}'.")
